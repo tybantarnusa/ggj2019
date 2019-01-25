@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
     }
 
     public void Shake() {
-        this.shakeDuration = 0.2f;
+        this.shakeDuration = 0.1f;
     }
 
     public void Shake(float duration) {
