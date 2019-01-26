@@ -26,7 +26,7 @@ public class RoomManager : MonoBehaviour
         }
 
         this.lightOnMaterial = new Material(Shader.Find("Sprites/Default"));
-        this.lightOffMaterial = new Material(Shader.Find("Legacy Shaders/Diffuse"));
+        this.lightOffMaterial = new Material(Shader.Find("Transparent/Diffuse"));
     }
 
     void Update()
@@ -37,12 +37,26 @@ public class RoomManager : MonoBehaviour
                 roomsLightTimer[i] -= Time.deltaTime;
                 rooms[i].GetComponent<Renderer>().material = lightOnMaterial;
                 player.GetComponent<Renderer>().material = lightOnMaterial;
+                for (int j = 0; j < rooms[i].transform.childCount; j++) {
+                    GameObject child = rooms[i].transform.GetChild(j).gameObject;
+                    Renderer renderer = child.GetComponent<Renderer>();
+                    if (renderer != null) {
+                        renderer.material = lightOnMaterial;
+                    }
+                }
 
             // Room is off
             } else {
                 roomsLightTimer[i] = 0;
                 rooms[i].GetComponent<Renderer>().material = lightOffMaterial;
                 player.GetComponent<Renderer>().material = lightOffMaterial;
+                for (int j = 0; j < rooms[i].transform.childCount; j++) {
+                    GameObject child = rooms[i].transform.GetChild(j).gameObject;
+                    Renderer renderer = child.GetComponent<Renderer>();
+                    if (renderer != null) {
+                        renderer.material = lightOffMaterial;
+                    }
+                }
             }
         }
     }

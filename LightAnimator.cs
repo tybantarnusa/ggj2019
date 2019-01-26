@@ -18,7 +18,7 @@ public class LightAnimator : MonoBehaviour
     {
         this.timer -= Time.deltaTime;
         if (this.timer <= 0) {
-            this.lightComponent.range = Random.Range(16f, 20f);
+            this.lightComponent.range = Random.Range(25f, 35f);
             this.timer = candleEffectDelay;
         }
     }
